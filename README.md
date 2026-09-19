@@ -6,7 +6,7 @@ A responsive, multi-page e-commerce web app with UPI payment checkout, an admin 
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
-**🔗 [Live Demo](https://lingeshwaran-j.github.io/ShopEase/)**
+**🔗https://github.com/lingeshwaran-j/ShopEase**
 
 <!--
 SCREENSHOTS — add 3–4 images to a /screenshots folder, then delete this comment line and the closing arrow below.
