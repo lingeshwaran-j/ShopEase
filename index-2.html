@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEase — India's Premier B2B Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#2563EB;--purple:#7C3AED;--dark:#111827;--gray:#6B7280;--border:#E5E7EB;--light:#F9FAFB;--green:#059669;--red:#DC2626;--yellow:#D97706}
+body{font-family:'DM Sans',sans-serif;background:#F9FAFB;color:#111827;min-height:100vh}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;transition:all .15s;text-decoration:none}
+.btn:active{opacity:.8}
+.btn:disabled{opacity:.45;cursor:not-allowed!important;transform:none!important}
+.btn-primary{background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;padding:10px 20px}
+.btn-primary:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
+.btn-outline{background:#fff;color:#374151;border:1.5px solid #E5E7EB;padding:9px 18px}
+.btn-outline:hover{border-color:#2563EB;color:#2563EB}
+.btn-ghost{background:transparent;color:#4B5563;padding:8px 16px}
+.btn-ghost:hover{background:#F3F4F6}
+.btn-ghost.active{background:#EFF6FF;color:#2563EB}
+.btn-danger{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;padding:6px 12px;font-size:12px;border-radius:8px;cursor:pointer;font-weight:700}
+.btn-edit{background:#EFF6FF;color:#2563EB;border:1px solid #BFDBFE;padding:6px 14px;font-size:12px;border-radius:8px;cursor:pointer;font-weight:700}
+.btn-verify{background:#D1FAE5;color:#065F46;border:1px solid #6EE7B7;padding:5px 12px;font-size:12px;border-radius:8px;cursor:pointer;font-weight:700}
+.btn-reject{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;padding:5px 12px;font-size:12px;border-radius:8px;cursor:pointer;font-weight:700}
+.btn-logout{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;padding:8px 14px;font-size:13px}
+.btn-lg{padding:14px 32px;font-size:16px;border-radius:12px}
+.btn-sm{padding:7px 14px;font-size:13px;border-radius:8px}
+.inp{width:100%;padding:11px 16px;border:1.5px solid #E5E7EB;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s;background:#fff}
+.inp:focus{border-color:#2563EB}
+.inp-green:focus{border-color:#059669}
+textarea.inp{resize:vertical;min-height:80px}
+select.inp{cursor:pointer}
+#navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #E5E7EB;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;color:inherit}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#2563EB,#7C3AED);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nav-logo-text{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cart-badge{background:#EF4444;color:#fff;border-radius:20px;padding:2px 8px;font-size:12px;font-weight:800}
+.user-chip{display:flex;align-items:center;gap:8px;background:#F9FAFB;border:1.5px solid #E5E7EB;border-radius:12px;padding:6px 14px 6px 8px}
+.uavatar{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:900;background:linear-gradient(135deg,#7C3AED,#4F46E5)}
+.u-name{font-size:13px;font-weight:700;line-height:1.2}
+.u-role{font-size:11px;font-weight:600;color:#7C3AED;line-height:1.2}
+.hero{background:linear-gradient(135deg,#1E3A8A 0%,#312E81 50%,#1E1B4B 100%);padding:80px 24px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(99,102,241,.3) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(37,99,235,.4) 0%,transparent 40%)}
+.hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);border-radius:20px;padding:6px 18px;font-size:13px;font-weight:600;margin-bottom:24px}
+.hero-title{font-size:clamp(30px,5vw,58px);font-weight:900;letter-spacing:-2px;margin-bottom:16px;line-height:1.1}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 40px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.hero-btn1{background:#fff;color:#1E3A8A;border:none;border-radius:12px;padding:14px 36px;cursor:pointer;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;transition:transform .15s}
+.hero-btn1:hover{transform:translateY(-2px)}
+.hero-btn2{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:12px;padding:14px 36px;cursor:pointer;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.feat-card{background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border-radius:16px;padding:24px 20px;border:1px solid rgba(255,255,255,.12);text-align:center}
+.section{max-width:1200px;margin:0 auto;padding:40px 24px}
+.sec-title{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:24px}
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.prod-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #F3F4F6;transition:transform .2s,box-shadow .2s}
+.prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.prod-img-wrap{position:relative;height:200px;background:#F3F4F6;overflow:hidden;cursor:pointer}
+.prod-img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px;background:linear-gradient(135deg,#E5E7EB,#F9FAFB)}
+.prod-body{padding:16px}
+.prod-name{font-weight:700;font-size:15px;margin-bottom:6px;line-height:1.3;cursor:pointer}
+.prod-desc{color:#6B7280;font-size:13px;margin-bottom:10px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod-price{font-size:20px;font-weight:800;color:#2563EB}
+.prod-actions{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.pill{display:inline-block;background:#EFF6FF;color:#2563EB;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;margin-bottom:8px}
+.bdg{border-radius:6px;padding:3px 10px;font-size:11px;font-weight:800;position:absolute;top:12px;left:12px;z-index:1}
+.bdg-bestseller{background:#2563EB;color:#fff}
+.bdg-new{background:#059669;color:#fff}
+.bdg-hot{background:#EF4444;color:#fff}
+.bdg-sale{background:#D97706;color:#fff}
+.bdg-limited{background:#7C3AED;color:#fff}
+.stars{color:#F59E0B;font-size:13px}
+.stars span{color:#6B7280;font-size:12px;margin-left:4px}
+.sts{display:inline-block;border-radius:20px;padding:3px 12px;font-size:12px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.sts-pending{background:#FEF3C7;color:#92400E}
+.sts-awaiting_payment{background:#FEF3C7;color:#92400E}
+.sts-payment_submitted{background:#DBEAFE;color:#1E40AF}
+.sts-confirmed{background:#D1FAE5;color:#065F46}
+.sts-shipped{background:#E0E7FF;color:#3730A3}
+.sts-delivered{background:#D1FAE5;color:#065F46}
+.sts-cancelled{background:#FEE2E2;color:#991B1B}
+.sts-payment_rejected{background:#FEE2E2;color:#991B1B}
+.utr-badge{background:#ECFDF5;border:1px solid #6EE7B7;color:#065F46;border-radius:8px;padding:3px 10px;font-size:11px;font-weight:700;font-family:monospace;letter-spacing:.5px}
+.card{background:#fff;border-radius:20px;border:1px solid #F3F4F6;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card-body{padding:24px}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{padding:12px 16px;text-align:left;font-size:12px;font-weight:700;color:#6B7280;border-bottom:2px solid #F3F4F6;background:#F9FAFB;white-space:nowrap}
+td{padding:11px 16px;font-size:13px;color:#374151;border-bottom:1px solid #F3F4F6;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFAFA}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px;margin-bottom:28px}
+.stat-card{border-radius:14px;padding:18px 20px;text-align:center}
+.stat-val{font-size:24px;font-weight:900}
+.stat-lbl{font-size:11px;font-weight:600;color:#6B7280;margin-top:4px}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #F3F4F6;align-items:center}
+.qty-btn{width:30px;height:30px;border:1.5px solid #E5E7EB;border-radius:8px;background:#F9FAFB;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
+.qty-btn:hover{background:#E5E7EB}
+.qr-box{background:#fff;border:2px solid #E0E7FF;border-radius:20px;padding:28px;text-align:center;margin-bottom:20px}
+.qr-img{width:200px;height:200px;border-radius:12px;border:3px solid #E5E7EB;margin:0 auto 16px;display:block;background:#F3F4F6}
+.upi-id-box{background:#F5F3FF;border:1px solid #DDD6FE;border-radius:10px;padding:10px 16px;font-family:monospace;font-size:15px;font-weight:700;color:#5B21B6;letter-spacing:.5px;margin-bottom:16px}
+.amt-chip{background:#FFF7ED;border:2px solid #FED7AA;border-radius:12px;padding:12px 20px;text-align:center;margin-bottom:16px}
+.utr-wrap{background:#F0FDF4;border:2px solid #86EFAC;border-radius:16px;padding:22px}
+.utr-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;text-align:left}
+.utr-step{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#374151}
+.utr-num{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.modal-ov{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:#fff;border-radius:20px;width:100%;max-width:680px;max-height:90vh;box-shadow:0 24px 60px rgba(0,0,0,.3);animation:modalIn .2s ease;display:flex;flex-direction:column;overflow:hidden}
+.modal-box-sm{max-width:460px}
+.modal-hdr{background:linear-gradient(135deg,#2563EB,#7C3AED);padding:20px 28px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.modal-body{padding:28px;overflow-y:auto;flex:1}
+.modal-ftr{padding:16px 28px;border-top:1px solid #F3F4F6;display:flex;gap:12px;justify-content:flex-end;background:#F9FAFB;flex-shrink:0}
+.modal-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg-full{grid-column:1/-1}
+.form-lbl{display:block;font-size:13px;font-weight:700;color:#374151;margin-bottom:6px}
+.img-prev{margin-top:10px;border-radius:10px;overflow:hidden;border:1.5px solid #E5E7EB;height:130px;display:none}
+.img-prev img{width:100%;height:100%;object-fit:cover}
+.login-pg{min-height:100vh;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 50%,#312E81 100%);display:flex;align-items:center;justify-content:center;padding:20px;position:relative}
+.login-pg::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 50%,rgba(99,102,241,.25) 0%,transparent 50%)}
+.login-wrap{position:relative;width:100%;max-width:440px}
+.login-box{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4);animation:modalIn .3s ease}
+.empty{text-align:center;padding:72px 24px;background:#fff;border-radius:20px;border:1px solid #F3F4F6}
+.empty-icon{font-size:56px;margin-bottom:16px}
+.empty-title{font-weight:700;font-size:20px;margin-bottom:8px}
+.empty-desc{color:#6B7280;margin-bottom:24px}
+.order-card{background:#fff;border-radius:16px;border:1px solid #F3F4F6;padding:20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.conf-box{display:inline-flex;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:16px;padding:18px 32px;margin-bottom:36px;gap:32px;flex-wrap:wrap;justify-content:center}
+.conf-lbl{font-size:11px;color:#6B7280;font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.conf-val{font-weight:800;color:#065F46;font-size:14px}
+.co-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+.co-sec{background:#fff;border-radius:18px;border:1px solid #F3F4F6;padding:22px;margin-bottom:16px}
+.co-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.co-form-full{grid-column:1/-1}
+.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px}
+.det-img-wrap{height:400px;border-radius:20px;overflow:hidden;background:#F3F4F6}
+.det-img{width:100%;height:100%;object-fit:cover}
+.det-price{font-size:34px;font-weight:900;color:#2563EB;margin:20px 0}
+.ship-note{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:14px 18px;font-size:13px;color:#065F46;margin-top:20px}
+.why-card{background:#F9FAFB;border-radius:14px;padding:22px;border:1px solid #F3F4F6}
+.search-bar{background:#fff;border-bottom:1px solid #E5E7EB;position:sticky;top:64px;z-index:40;padding:14px 24px}
+.search-inner{max-width:1200px;margin:0 auto}
+.search-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.s-wrap{flex:1;min-width:180px;position:relative;margin-right:6px}
+#toast{position:fixed;bottom:28px;right:28px;z-index:9999;background:#111827;color:#fff;padding:13px 20px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.3);animation:fadeUp .3s ease;display:none;align-items:center;gap:10px;max-width:350px}
+footer{background:#111827;color:#9CA3AF;padding:36px 24px;text-align:center;margin-top:40px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@media(max-width:960px){.co-grid{grid-template-columns:1fr}.det-grid{grid-template-columns:1fr;gap:24px}.det-img-wrap{height:280px}}
+@media(max-width:640px){.hero{padding:48px 16px}.section{padding:24px 16px}#navbar{padding:0 16px}.nav-links .btn-ghost{display:none}.prod-grid{grid-template-columns:1fr 1fr}.co-form{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
+@media(max-width:420px){.prod-grid{grid-template-columns:1fr}.conf-box{gap:16px;padding:16px}}
+
+/* ── AI CHAT WIDGET ───────────────────────── */
+#chat-fab{position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(37,99,235,.4);z-index:200;font-size:26px;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+#chat-fab:hover{transform:scale(1.06)}
+#chat-fab .dot{position:absolute;top:2px;right:2px;width:14px;height:14px;background:#22C55E;border:2px solid #fff;border-radius:50%}
+#chat-panel{position:fixed;bottom:96px;right:24px;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 140px);background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);z-index:200;display:none;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB}
+#chat-panel.open{display:flex}
+#chat-hdr{background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:10px}
+#chat-hdr .ttl{font-weight:800;font-size:15px;line-height:1.2}
+#chat-hdr .sub{font-size:11.5px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:5px}
+#chat-hdr .sub::before{content:'';width:7px;height:7px;border-radius:50%;background:#22C55E}
+#chat-hdr .x{margin-left:auto;background:rgba(255,255,255,.15);border:none;color:#fff;width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:15px}
+#chat-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#F9FAFB}
+.cmsg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.5}
+.cmsg-bot{background:#fff;border:1px solid #E5E7EB;align-self:flex-start;border-bottom-left-radius:4px}
+.cmsg-user{background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.cmsg-prod{display:flex;gap:10px;align-items:center;border:1px solid #E5E7EB;border-radius:10px;padding:8px;cursor:pointer;background:#F9FAFB;margin-top:6px}
+.cmsg-prod:hover{border-color:#2563EB}
+.cmsg-prod img,.cmsg-prod .ph{width:40px;height:40px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.cmsg-prod .ph{display:flex;align-items:center;justify-content:center;background:#E5E7EB;font-size:18px}
+.cmsg-prod .nm{font-size:12.5px;font-weight:700;line-height:1.3}
+.cmsg-prod .pr{font-size:12px;color:#2563EB;font-weight:800}
+.cchips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px}
+.cchip{background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;color:#374151}
+.cchip:hover{border-color:#2563EB;color:#2563EB}
+#chat-inp-row{display:flex;gap:8px;padding:12px;border-top:1px solid #E5E7EB;background:#fff}
+#chat-inp{flex:1;border:1.5px solid #E5E7EB;border-radius:10px;padding:10px 13px;font-size:13.5px;font-family:'DM Sans',sans-serif;outline:none;resize:none}
+#chat-inp:focus{border-color:#2563EB}
+#chat-send{background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;border:none;width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:16px;flex-shrink:0}
+.ctyping{display:flex;gap:4px;padding:12px 13px;align-self:flex-start;background:#fff;border:1px solid #E5E7EB;border-radius:14px;border-bottom-left-radius:4px}
+.ctyping span{width:6px;height:6px;border-radius:50%;background:#9CA3AF;animation:cbounce 1.2s infinite}
+.ctyping span:nth-child(2){animation-delay:.2s}.ctyping span:nth-child(3){animation-delay:.4s}
+@keyframes cbounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+@media(max-width:420px){#chat-panel{right:16px;left:16px;width:auto;bottom:88px}#chat-fab{right:16px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <nav id="navbar"></nav>
+  <main id="main" style="min-height:calc(100vh - 64px)"></main>
+  <footer id="footer">
+    <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">🛍️ ShopEase</div>
+    <p style="font-size:14px;margin-bottom:10px">UPI QR Payment · UTR Verification · Admin Panel · INR ₹ Prices</p>
+    <p style="font-size:12px;color:#4B5563">© 2025 ShopEase. All rights reserved.</p>
+  </footer>
+</div>
+<div id="modal-root"></div>
+<div id="toast"><span id="toast-icon" style="font-size:18px">✓</span><span id="toast-msg"></span></div>
+
+<!-- ── AI CHAT WIDGET ─────────────────────── -->
+<button id="chat-fab" onclick="Chat.toggle()" aria-label="Chat with ShopEase AI Assistant">
+  💬<span class="dot"></span>
+</button>
+<div id="chat-panel">
+  <div id="chat-hdr">
+    <div>
+      <div class="ttl">ShopEase AI Assistant</div>
+      <div class="sub">Online 24/7</div>
+    </div>
+    <button class="x" onclick="Chat.toggle(false)">✕</button>
+  </div>
+  <div id="chat-body"></div>
+  <div id="chat-chips" class="cchips"></div>
+  <div id="chat-inp-row">
+    <textarea id="chat-inp" rows="1" placeholder="Ask about products, orders, shipping…" onkeydown="Chat.onKey(event)"></textarea>
+    <button id="chat-send" onclick="Chat.send()">➤</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ── SEED DATA ─────────────────────────────── */
+const SEED_PRODUCTS=[
+  {id:1,name:"Sony WH-1000XM5 Headphones",price:29224,cat:1,img:"https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Industry-leading noise cancelling with Auto NC Optimizer. 30-hour battery life with quick charge.",rating:4.8,reviews:2341,badge:"Best Seller"},
+  {id:2,name:"Apple Watch Series 9",price:33317,cat:1,img:"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Advanced health sensors, brighter Always-On display, and the powerful Double Tap gesture.",rating:4.9,reviews:1892,badge:"New"},
+  {id:3,name:'Samsung 4K Smart TV 55"',price:66799,cat:1,img:"https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Crystal UHD 4K upscaling with Alexa built-in. Quantum HDR and Object Tracking Sound.",rating:4.6,reviews:983,badge:null},
+  {id:4,name:"Levi's 511 Slim Fit Jeans",price:5009,cat:2,img:"https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Classic slim fit with stretch comfort fabric. Available in multiple washes and sizes.",rating:4.5,reviews:4120,badge:null},
+  {id:5,name:"Nike Air Max 270",price:10854,cat:2,img:"https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Max Air cushioning in the heel for unbeatable comfort. Breathable mesh upper for all-day wear.",rating:4.7,reviews:3300,badge:"Hot"},
+  {id:6,name:"Premium Wool Blazer",price:15782,cat:2,img:"https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Tailored wool-blend blazer with slim lapels. Perfect for business meetings or weekend events.",rating:4.4,reviews:612,badge:null},
+  {id:7,name:"Instant Pot Duo 7-in-1",price:8346,cat:3,img:"https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Pressure cooker, slow cooker, rice cooker, steamer, sauté pan, yogurt maker & warmer.",rating:4.8,reviews:5820,badge:"Best Seller"},
+  {id:8,name:"Dyson V15 Detect Vacuum",price:54274,cat:3,img:"https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Laser reveals invisible dust. Automatically adapts suction power based on floor type.",rating:4.7,reviews:1230,badge:null},
+  {id:9,name:"Yoga Mat Pro — 6mm",price:6679,cat:4,img:"https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Extra thick non-slip surface with alignment guides. Eco-friendly natural rubber.",rating:4.6,reviews:2100,badge:null},
+  {id:10,name:"Whey Protein Isolate 5lb",price:4592,cat:4,img:"https://images.pexels.com/photos/3927396/pexels-photo-3927396.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"25g protein per serving, 0g sugar. Available in Chocolate Fudge and French Vanilla.",rating:4.5,reviews:876,badge:null},
+  {id:11,name:"Adjustable Dumbbell Set",price:20874,cat:4,img:"https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"5–52.5 lbs per dumbbell. Replaces 15 pairs with secure locking mechanism.",rating:4.8,reviews:1543,badge:"New"},
+  {id:12,name:"Smart LED Desk Lamp",price:3840,cat:3,img:"https://images.pexels.com/photos/1112598/pexels-photo-1112598.jpeg?auto=compress&cs=tinysrgb&w=400",desc:"Touch control, 5 brightness levels & colour modes. Built-in USB-A charging port.",rating:4.3,reviews:744,badge:null},
+];
+const SEED_ORDERS=[
+  {id:1,num:"ORD-20240401-001",uid:1,date:"2024-04-01",total:35903,status:"delivered",utr:"UTR123456789012",utrVerified:true,name:"Rohan Mehta",phone:"+91 98765 43210",addr:"12 Tech Park, Bengaluru 560066",items:[{name:"Sony WH-1000XM5 Headphones",qty:1,price:29224},{name:"Yoga Mat Pro",qty:1,price:6679}]},
+  {id:2,num:"ORD-20240405-002",uid:1,date:"2024-04-05",total:10854,status:"payment_submitted",utr:"UTR987654321098",utrVerified:false,name:"Rohan Mehta",phone:"+91 98765 43210",addr:"12 Tech Park, Bengaluru 560066",items:[{name:"Nike Air Max 270",qty:1,price:10854}]},
+  {id:3,num:"ORD-20240410-003",uid:2,date:"2024-04-10",total:66799,status:"confirmed",utr:"UTR567891234567",utrVerified:true,name:"Priya Sharma",phone:"+91 91234 56789",addr:"45 MG Road, Pune 411001",items:[{name:'Samsung 4K Smart TV 55"',qty:1,price:66799}]},
+  {id:4,num:"ORD-20240412-004",uid:2,date:"2024-04-12",total:8346,status:"awaiting_payment",utr:null,utrVerified:false,name:"Priya Sharma",phone:"+91 91234 56789",addr:"45 MG Road, Pune 411001",items:[{name:"Instant Pot Duo 7-in-1",qty:1,price:8346}]},
+];
+const CATEGORIES=[{id:1,name:"Electronics"},{id:2,name:"Fashion"},{id:3,name:"Home & Kitchen"},{id:4,name:"Sports"}];
+const USERS=[
+  {id:1,name:"Rohan Mehta",email:"rohan@shopease.in",pass:"rohan123",role:"user",av:"RM"},
+  {id:2,name:"Priya Sharma",email:"priya@shopease.in",pass:"priya123",role:"user",av:"PS"},
+  {id:99,name:"Admin",email:"admin@shopease.in",pass:"admin123",role:"admin",av:"AD"},
+];
+const CAT_ICON={1:"📱",2:"👕",3:"🏠",4:"💪"};
+
+/* ── STORE ─────────────────────────────────── */
+const DB=(()=>{
+  const K='shopease_v4';let d={};
+  try{d=JSON.parse(localStorage.getItem(K))||{};}catch(e){}
+  const sv=()=>{try{localStorage.setItem(K,JSON.stringify(d));}catch(e){}};
+  return{
+    get user(){return d.user??null},
+    get products(){return d.products??SEED_PRODUCTS},
+    get orders(){return d.orders??SEED_ORDERS},
+    get cart(){return d.cart??[]},
+    get upiId(){return d.upiId??"shopease@upi"},
+    set user(v){d.user=v;sv()},
+    set products(v){d.products=v;sv()},
+    set orders(v){d.orders=v;sv()},
+    set cart(v){d.cart=v;sv()},
+    set upiId(v){d.upiId=v;sv()},
+  };
+})();
+
+/* ── HELPERS ───────────────────────────────── */
+const inr=n=>'₹'+Math.round(Number(n)||0).toLocaleString('en-IN');
+const catName=id=>(CATEGORIES.find(c=>c.id==id)||{}).name||'';
+const stars=r=>'★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r));
+const fd=d=>new Date(d).toLocaleDateString('en-IN',{year:'numeric',month:'short',day:'numeric'});
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const bc=b=>({'Best Seller':'bdg-bestseller','New':'bdg-new','Hot':'bdg-hot','Sale':'bdg-sale','Limited':'bdg-limited'})[b]||'bdg-bestseller';
+const sc=s=>`sts-${(s||'pending')}`;
+const sl=s=>({'pending':'Pending','awaiting_payment':'Awaiting Payment','payment_submitted':'Payment Submitted','confirmed':'Confirmed','shipped':'Shipped','delivered':'Delivered','cancelled':'Cancelled','payment_rejected':'Payment Rejected'})[s]||s;
+
+let _tt;
+function toast(msg,err=false){
+  const el=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  document.getElementById('toast-icon').textContent=err?'⚠️':'✓';
+  el.style.display='flex';clearTimeout(_tt);
+  _tt=setTimeout(()=>el.style.display='none',2800);
+}
+function closeModal(){document.getElementById('modal-root').innerHTML='';}
+function qrUrl(upiId,amt){
+  const s=`upi://pay?pa=${encodeURIComponent(upiId)}&pn=ShopEase&am=${amt}&cu=INR&tn=ShopEase+Order`;
+  return`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(s)}&bgcolor=ffffff&color=111827&margin=10&qzone=1`;
+}
+function pImg(img,name,cat,cls,h){
+  const icon=CAT_ICON[cat]||'🛍️';
+  if(!img)return`<div class="prod-img-ph" style="height:${h||200}px">${icon}</div>`;
+  return`<img class="${cls||'prod-img'}" src="${esc(img)}" alt="${esc(name)}" style="height:${h||200}px;width:100%;object-fit:cover"
+    onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')" loading="lazy">
+    <div class="prod-img-ph" style="height:${h||200}px;display:none">${icon}</div>`;
+}
+
+/* ── ROUTER ────────────────────────────────── */
+const R={page:'home',params:{},_al:null,
+  go(pg,p={}){
+    if(pg==='admin'&&DB.user?.role!=='admin'){this._al='admin';this.page='login';this.params={};render();return;}
+    this.page=pg;this.params=p;window.scrollTo(0,0);render();
+  }
+};
+
+/* ── NAVBAR ────────────────────────────────── */
+function drawNav(){
+  const u=DB.user,p=R.page,cc=DB.cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('navbar').innerHTML=`
+    <a class="nav-logo" onclick="R.go('home')">
+      <div class="nav-logo-icon">🛍️</div>
+      <span class="nav-logo-text">ShopEase</span>
+    </a>
+    <div class="nav-links">
+      <button class="btn btn-ghost${p==='home'?' active':''}" onclick="R.go('home')">Home</button>
+      <button class="btn btn-ghost${['products','detail'].includes(p)?' active':''}" onclick="R.go('products')">Products</button>
+      <button class="btn btn-ghost${p==='orders'?' active':''}" onclick="R.go('orders')">My Orders</button>
+      ${u?.role==='admin'?`<button class="btn btn-ghost" style="${p==='admin'?'background:#F5F3FF;color:#7C3AED':''}" onclick="R.go('admin')">Admin Panel</button>`:''}
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn btn-primary btn-sm" onclick="R.go('cart')">🛒${cc>0?`<span class="cart-badge">${cc}</span>`:''}</button>
+        ${u?.role==='admin'?`
+          <div class="user-chip"><div class="uavatar">${esc(u.av)}</div>
+          <div><div class="u-name">${esc(u.name.split(' ')[0])}</div><div class="u-role">Admin</div></div></div>
+          <button class="btn btn-logout" onclick="App.logout()">Logout</button>`
+        :`<button class="btn btn-ghost" style="font-size:13px;${p==='admin'?'background:#F5F3FF;color:#7C3AED':''}" onclick="R.go('admin')">🔐 Admin</button>`}
+      </div>
+    </div>`;
+}
+
+/* ── HOME ──────────────────────────────────── */
+function pgHome(){
+  const feat=DB.products.filter(p=>p.badge).slice(0,4);
+  return`<div>
+  <div class="hero"><div class="hero-inner">
+    <div class="hero-badge">🚀 India's Premier B2B Marketplace</div>
+    <h1 class="hero-title">Your Business,<br>Our Marketplace</h1>
+    <p class="hero-sub">Secure UPI payments, UTR verification, real-time order tracking, and a full admin control panel.</p>
+    <div class="hero-btns">
+      <button class="hero-btn1" onclick="R.go('products')">Explore Products →</button>
+      <button class="hero-btn2" onclick="R.go('admin')">Admin Panel</button>
+    </div>
+    <div class="feat-grid">
+      ${[['🛍️','Wide Catalogue','Electronics, Fashion, Home & Sports'],['📱','UPI QR Payment','Scan & pay instantly — zero card fees'],['🔢','UTR Verification','Admin validates every transaction'],['📊','Live Admin Panel','Full order & inventory control']].map(([i,t,s])=>`
+      <div class="feat-card"><div style="font-size:32px;margin-bottom:10px">${i}</div><div style="font-weight:700;font-size:14px;margin-bottom:4px">${t}</div><div style="font-size:13px;color:rgba(255,255,255,.6)">${s}</div></div>`).join('')}
+    </div>
+  </div></div>
+
+  <div class="section">
+    <div class="sec-hdr">
+      <h2 class="sec-title" style="margin-bottom:0">Featured Products</h2>
+      <button class="btn btn-primary btn-sm" onclick="R.go('products')">View All →</button>
+    </div>
+    <div class="prod-grid">${feat.map(prodCard).join('')}</div>
+  </div>
+
+  <div style="background:#fff;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;padding:56px 24px">
+    <div style="max-width:1200px;margin:0 auto">
+      <h2 class="sec-title" style="text-align:center">How to Order & Pay</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:28px">
+        ${[['1','🛒','Add to Cart','Browse products and add items to your cart'],['2','📋','Enter Details','Fill your name, phone and delivery address'],['3','📱','Scan QR Code','Open any UPI app and scan admin\'s QR code to pay'],['4','🔢','Submit UTR','Enter the 12-digit UTR from your UPI transaction'],['5','✅','Admin Verifies','Admin confirms UTR and processes your order']].map(([n,i,t,d])=>`
+        <div class="why-card" style="text-align:center">
+          <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 10px">${n}</div>
+          <div style="font-size:26px;margin-bottom:8px">${i}</div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px">${t}</div>
+          <div style="font-size:13px;color:#6B7280;line-height:1.5">${d}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>
+  </div>`;
+}
+
+/* ── PRODUCT CARD ──────────────────────────── */
+function prodCard(p){
+  return`<div class="prod-card">
+    <div class="prod-img-wrap" onclick="R.go('detail',{id:${p.id}})">
+      ${pImg(p.img,p.name,p.cat,'prod-img',200)}
+      ${p.badge?`<span class="bdg ${bc(p.badge)}">${esc(p.badge)}</span>`:''}
+    </div>
+    <div class="prod-body">
+      <div class="pill">${catName(p.cat)}</div>
+      <div class="prod-name" onclick="R.go('detail',{id:${p.id}})">${esc(p.name)}</div>
+      <div class="prod-desc">${esc(p.desc)}</div>
+      <div class="stars">${stars(p.rating)}<span>${p.rating} (${(p.reviews||0).toLocaleString('en-IN')})</span></div>
+      <div class="prod-actions">
+        <span class="prod-price">${inr(p.price)}</span>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" onclick="R.go('detail',{id:${p.id}})">View</button>
+          <button class="btn btn-primary btn-sm" onclick="App.addToCart(${p.id})">+ Add</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── LOGIN ─────────────────────────────────── */
+function pgLogin(){
+  return`<div class="login-pg"><div class="login-wrap">
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:6px">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,#2563EB,#7C3AED);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px">🛍️</div>
+        <span style="font-size:26px;font-weight:900;color:#fff;letter-spacing:-1px">ShopEase</span>
+      </div>
+      <p style="color:rgba(255,255,255,.6);font-size:14px;margin-top:2px">India's Premier B2B Marketplace</p>
+    </div>
+    <div class="login-box">
+      <div style="background:linear-gradient(135deg,#7C3AED,#4F46E5);padding:18px 28px">
+        <div style="color:#fff;font-weight:900;font-size:17px">🔐 Admin Login</div>
+        <div style="color:rgba(255,255,255,.7);font-size:13px;margin-top:3px">Manage orders, products and verify payments</div>
+      </div>
+      <div style="padding:28px">
+        <div id="login-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:10px 14px;font-size:13px;color:#DC2626;margin-bottom:16px"></div>
+        <div style="margin-bottom:14px">
+          <label class="form-lbl">Email Address</label>
+          <input class="inp" id="l-email" type="email" placeholder="admin@shopease.in" autocomplete="email" style="border-color:#DDD6FE">
+        </div>
+        <div style="margin-bottom:22px">
+          <label class="form-lbl">Password</label>
+          <div style="position:relative">
+            <input class="inp" id="l-pass" type="password" placeholder="Admin password" style="padding-right:44px;border-color:#DDD6FE" onkeydown="if(event.key==='Enter')App.doLogin()">
+            <button onclick="App.toggleEye()" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:15px;color:#9CA3AF" id="eye-btn">👁️</button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg" id="login-btn" style="width:100%;justify-content:center;background:linear-gradient(135deg,#7C3AED,#4F46E5)" onclick="App.doLogin()">🔐 Access Admin Panel</button>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px" onclick="R.go('home')">← Back to Home</button>
+      </div>
+    </div>
+    <p style="text-align:center;color:rgba(255,255,255,.35);font-size:12px;margin-top:18px">Admin access only · Credentials: admin@shopease.in / admin123</p>
+  </div></div>`;
+}
+
+/* ── PRODUCTS CATALOG ──────────────────────── */
+function pgProducts(){
+  const s=R.params.search||'',cat=R.params.cat||null;
+  const cc=DB.cart.reduce((t,i)=>t+i.qty,0);
+  const prods=DB.products.filter(p=>(!cat||p.cat==cat)&&(!s||p.name.toLowerCase().includes(s.toLowerCase())||p.desc.toLowerCase().includes(s.toLowerCase())));
+  return`
+  <div class="search-bar"><div class="search-inner">
+    <div class="search-row">
+      <h1 style="font-size:21px;font-weight:800">All Products</h1>
+      <button class="btn btn-primary btn-sm" onclick="R.go('cart')">🛒 Cart${cc>0?` (${cc})`:''}</button>
+    </div>
+    <div class="filter-row">
+      <div class="s-wrap">
+        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#9CA3AF;pointer-events:none">🔍</span>
+        <input class="inp" id="s-inp" style="padding-left:40px" placeholder="Search products…" value="${esc(s)}" oninput="App.doSearch(this.value)">
+      </div>
+      <button class="btn btn-sm ${!cat?'btn-primary':'btn-outline'}" onclick="App.setCat(null)">All</button>
+      ${CATEGORIES.map(c=>`<button class="btn btn-sm ${cat==c.id?'btn-primary':'btn-outline'}" onclick="App.setCat(${c.id})">${c.name}</button>`).join('')}
+    </div>
+  </div></div>
+  <div class="section">
+    <p style="color:#6B7280;font-size:14px;margin-bottom:18px">${prods.length} product${prods.length!==1?'s':''} found</p>
+    <div class="prod-grid">${prods.length?prods.map(prodCard).join(''):`
+      <div style="grid-column:1/-1;text-align:center;padding:72px 24px">
+        <div style="font-size:48px;margin-bottom:14px">🔍</div>
+        <p style="color:#6B7280;font-size:15px">No products found.</p>
+        <button class="btn btn-primary" style="margin-top:18px" onclick="App.clearSearch()">Clear Search</button>
+      </div>`}
+    </div>
+  </div>`;
+}
+
+/* ── DETAIL ────────────────────────────────── */
+function pgDetail(){
+  const p=DB.products.find(x=>x.id==R.params.id);
+  if(!p)return`<div class="section" style="padding-top:40px"><p style="color:#6B7280">Product not found. <button class="btn btn-primary btn-sm" onclick="R.go('products')">Browse</button></p></div>`;
+  const rel=DB.products.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,3);
+  return`<div class="section">
+    <button class="btn btn-ghost" onclick="R.go('products')" style="margin-bottom:22px">← Products</button>
+    <div class="det-grid">
+      <div class="det-img-wrap">${pImg(p.img,p.name,p.cat,'det-img',400)}</div>
+      <div>
+        <div class="pill">${catName(p.cat)}</div>
+        ${p.badge?`<span class="bdg ${bc(p.badge)}" style="position:static;display:inline-block;margin-left:8px">${esc(p.badge)}</span>`:''}
+        <h1 style="font-size:24px;font-weight:800;margin:12px 0;line-height:1.2">${esc(p.name)}</h1>
+        <div class="stars">${stars(p.rating)}<span>${p.rating} (${(p.reviews||0).toLocaleString('en-IN')} reviews)</span></div>
+        <div class="det-price">${inr(p.price)}</div>
+        <p style="color:#4B5563;line-height:1.7;margin-bottom:28px">${esc(p.desc)}</p>
+        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="App.addToCart(${p.id},true)">🛒 Add to Cart</button>
+        <div class="ship-note">📱 Pay via UPI QR · ✅ Free shipping over ₹4,000 · 30-day returns</div>
+      </div>
+    </div>
+    ${rel.length?`<h2 class="sec-title">Related Products</h2><div class="prod-grid">${rel.map(prodCard).join('')}</div>`:''}
+  </div>`;
+}
+
+/* ── CART ──────────────────────────────────── */
+function pgCart(){
+  const cart=DB.cart,total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  if(!cart.length)return`<div class="section"><div class="empty"><div class="empty-icon">🛒</div><h2 class="empty-title">Your cart is empty</h2><p class="empty-desc">Add products to get started!</p><button class="btn btn-primary btn-lg" onclick="R.go('products')">Start Shopping</button></div></div>`;
+  return`<div class="section">
+    <button class="btn btn-ghost" onclick="R.go('products')" style="margin-bottom:22px">← Continue Shopping</button>
+    <h1 class="sec-title">Shopping Cart <span style="font-size:15px;color:#6B7280;font-weight:500">(${cart.reduce((s,i)=>s+i.qty,0)} items)</span></h1>
+    <div class="co-grid">
+      <div class="card"><div class="card-body" style="padding:0 24px">
+        ${cart.map(item=>`<div class="cart-item">
+          <div style="width:70px;height:70px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#F3F4F6">${pImg(item.img,item.name,item.cat,'',70)}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:700;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(item.name)}</div>
+            <div style="color:#2563EB;font-weight:700">${inr(item.price)}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <button class="qty-btn" onclick="App.setQty(${item.id},${item.qty-1})">−</button>
+            <span style="font-weight:700;min-width:20px;text-align:center">${item.qty}</span>
+            <button class="qty-btn" onclick="App.setQty(${item.id},${item.qty+1})">+</button>
+          </div>
+          <div style="font-weight:800;min-width:75px;text-align:right;flex-shrink:0">${inr(item.price*item.qty)}</div>
+          <button onclick="App.removeItem(${item.id})" style="background:none;border:none;cursor:pointer;color:#EF4444;font-size:18px;padding:4px">🗑</button>
+        </div>`).join('')}
+      </div></div>
+      <div><div class="card" style="position:sticky;top:80px"><div class="card-body">
+        <h2 style="font-weight:800;font-size:17px;margin-bottom:18px">Order Summary</h2>
+        ${cart.map(i=>`<div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:#4B5563"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px">${esc(i.name)} ×${i.qty}</span><span style="font-weight:600;flex-shrink:0">${inr(i.price*i.qty)}</span></div>`).join('')}
+        <div style="border-top:1px solid #F3F4F6;margin-top:14px;padding-top:14px">
+          <div style="display:flex;justify-content:space-between;color:#6B7280;margin-bottom:8px;font-size:14px"><span>Shipping</span><span style="color:#059669;font-weight:600">FREE</span></div>
+          <div style="display:flex;justify-content:space-between;font-weight:900;font-size:20px"><span>Total</span><span style="color:#2563EB">${inr(total)}</span></div>
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:18px" onclick="R.go('checkout')">Checkout →</button>
+        <p style="text-align:center;font-size:12px;color:#9CA3AF;margin-top:8px">📱 Pay via UPI QR at checkout</p>
+      </div></div></div>
+    </div>
+  </div>`;
+}
+
+/* ── CHECKOUT (details step) ─────────────────── */
+function pgCheckout(){
+  const cart=DB.cart;if(!cart.length){R.go('products');return'';}
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  return`<div class="section">
+    <button class="btn btn-ghost" onclick="R.go('cart')" style="margin-bottom:22px">← Back to Cart</button>
+    <h1 class="sec-title">Checkout — Step 1 of 2</h1>
+    <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:12px;padding:12px 16px;margin-bottom:24px;font-size:14px;color:#1D4ED8">
+      📱 You will pay via <strong>UPI QR code</strong> in the next step. No card details needed.
+    </div>
+    <div class="co-grid">
+      <div>
+        <div class="co-sec">
+          <h2 style="font-weight:700;font-size:16px;margin-bottom:18px">📦 Your Details</h2>
+          <div class="co-form">
+            <div><label class="form-lbl">Full Name *</label><input class="inp" id="co-name" placeholder="Your full name"></div>
+            <div><label class="form-lbl">Phone Number *</label><input class="inp" id="co-phone" placeholder="+91 XXXXX XXXXX" type="tel"></div>
+            <div class="co-form-full"><label class="form-lbl">Email Address</label><input class="inp" id="co-email" type="email" placeholder="optional"></div>
+            <div class="co-form-full"><label class="form-lbl">Delivery Address *</label><textarea class="inp" id="co-addr" rows="2" placeholder="Street, City, State, PIN Code" style="min-height:60px"></textarea></div>
+          </div>
+        </div>
+        <div id="co-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:12px 16px;font-size:13px;color:#DC2626">⚠️ Please fill all required fields (Name, Phone, Address).</div>
+      </div>
+      <div><div class="card" style="position:sticky;top:80px"><div class="card-body">
+        <h2 style="font-weight:800;font-size:17px;margin-bottom:16px">Order Summary</h2>
+        ${cart.map(i=>`<div style="display:flex;gap:10px;margin-bottom:10px;align-items:center">
+          <div style="width:42px;height:42px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#F3F4F6">${pImg(i.img,i.name,i.cat,'',42)}</div>
+          <div style="flex:1;font-size:12px;min-width:0"><div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.name)}</div><div style="color:#6B7280">×${i.qty}</div></div>
+          <span style="font-weight:700;font-size:13px;flex-shrink:0">${inr(i.price*i.qty)}</span>
+        </div>`).join('')}
+        <div style="border-top:1px solid #F3F4F6;margin-top:12px;padding-top:14px">
+          <div style="display:flex;justify-content:space-between;font-weight:900;font-size:20px"><span>Total</span><span style="color:#2563EB">${inr(total)}</span></div>
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:18px" onclick="App.goToPayment()">Continue to Payment →</button>
+      </div></div></div>
+    </div>
+  </div>`;
+}
+
+/* ── PAYMENT (QR + UTR step) ─────────────────── */
+function pgPayment(){
+  const cart=DB.cart;if(!cart.length){R.go('products');return'';}
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const upiId=DB.upiId;
+  return`<div class="section">
+    <button class="btn btn-ghost" onclick="R.go('checkout')" style="margin-bottom:22px">← Back to Details</button>
+    <h1 class="sec-title">💳 Payment — Step 2 of 2</h1>
+    <div class="co-grid">
+      <div>
+        <!-- QR BOX -->
+        <div class="qr-box">
+          <h2 style="font-weight:800;font-size:18px;margin-bottom:6px">📱 Scan & Pay via UPI</h2>
+          <p style="color:#6B7280;font-size:14px;margin-bottom:22px">Open GPay, PhonePe, Paytm or any UPI app — scan QR code below</p>
+          <img class="qr-img" id="qr-img" src="${qrUrl(upiId,total)}" alt="UPI QR Code"
+            onerror="this.outerHTML='<div class=qr-img style=display:flex;align-items:center;justify-content:center;color:#9CA3AF;font-size:13px>QR Loading…</div>'">
+          <div class="upi-id-box">${esc(upiId)}</div>
+          <div class="amt-chip">
+            <div style="font-size:12px;color:#92400E;font-weight:600;margin-bottom:4px">Amount to Pay</div>
+            <div style="font-size:30px;font-weight:900;color:#C2410C">${inr(total)}</div>
+          </div>
+          <div style="background:#FEF3C7;border:1px solid #FCD34D;border-radius:10px;padding:10px 14px;font-size:13px;color:#92400E">
+            ⚠️ Pay exactly <strong>${inr(total)}</strong> — do not change the amount
+          </div>
+        </div>
+
+        <!-- UTR BOX -->
+        <div class="utr-wrap">
+          <h3 style="font-weight:800;font-size:16px;color:#065F46;margin-bottom:14px">🔢 Enter Transaction UTR Number</h3>
+          <div class="utr-steps">
+            <div class="utr-step"><div class="utr-num">1</div><span>Complete the UPI payment using the QR code above</span></div>
+            <div class="utr-step"><div class="utr-num">2</div><span>Open your UPI app → Transaction History</span></div>
+            <div class="utr-step"><div class="utr-num">3</div><span>Find the <strong>UTR / Reference Number</strong> (12-digit) for this payment</span></div>
+            <div class="utr-step"><div class="utr-num">4</div><span>Enter it below and click Submit Order</span></div>
+          </div>
+          <label class="form-lbl" style="color:#065F46">UTR / Transaction Reference Number *</label>
+          <input class="inp inp-green" id="utr-inp" placeholder="e.g. 123456789012" maxlength="24"
+            style="font-family:monospace;font-size:16px;letter-spacing:1px;font-weight:700;border-color:#86EFAC;margin-bottom:8px"
+            oninput="App.onUtr(this.value)">
+          <p style="font-size:12px;color:#6B7280;margin-bottom:12px">UTR is visible in your payment confirmation SMS or UPI app transaction history</p>
+          <div id="utr-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:10px;font-size:13px;color:#DC2626;margin-bottom:12px"></div>
+          <button class="btn btn-primary btn-lg" id="submit-btn" style="width:100%;justify-content:center;background:linear-gradient(135deg,#059669,#0D9488)" disabled onclick="App.placeOrder()">
+            ✓ Submit Order
+          </button>
+          <p style="text-align:center;font-size:12px;color:#6B7280;margin-top:8px">Admin will verify your UTR and confirm the order within a few hours</p>
+        </div>
+      </div>
+
+      <!-- SUMMARY PANEL -->
+      <div><div class="card" style="position:sticky;top:80px"><div class="card-body">
+        <h2 style="font-weight:800;font-size:17px;margin-bottom:16px">Order Summary</h2>
+        ${cart.map(i=>`<div style="display:flex;gap:10px;margin-bottom:10px;align-items:center">
+          <div style="width:42px;height:42px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#F3F4F6">${pImg(i.img,i.name,i.cat,'',42)}</div>
+          <div style="flex:1;font-size:12px;min-width:0"><div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(i.name)}</div><div style="color:#6B7280">×${i.qty}</div></div>
+          <span style="font-weight:700;font-size:13px;flex-shrink:0">${inr(i.price*i.qty)}</span>
+        </div>`).join('')}
+        <div style="border-top:1px solid #F3F4F6;margin-top:12px;padding-top:14px">
+          <div style="display:flex;justify-content:space-between;font-weight:900;font-size:20px"><span>Total</span><span style="color:#2563EB">${inr(total)}</span></div>
+        </div>
+        <div style="margin-top:16px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px">
+          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:4px">📋 Shipping To</div>
+          <div style="font-size:13px;color:#374151;font-weight:600">${esc(R.params.name||'—')}</div>
+          <div style="font-size:13px;color:#374151">${esc(R.params.phone||'')}</div>
+          <div style="font-size:12px;color:#6B7280;margin-top:2px">${esc(R.params.addr||'—')}</div>
+        </div>
+      </div></div></div>
+    </div>
+  </div>`;
+}
+
+/* ── CONFIRMATION ──────────────────────────── */
+function pgConfirm(){
+  const o=R.params.order;if(!o){R.go('home');return'';}
+  return`<div class="section" style="text-align:center;padding:72px 24px">
+    <div style="font-size:72px;margin-bottom:18px;animation:bounce .6s ease">🎉</div>
+    <h1 style="font-size:32px;font-weight:900;margin-bottom:10px">Order Submitted!</h1>
+    <p style="color:#6B7280;font-size:15px;margin-bottom:6px">Your order is received. Admin is verifying your UTR payment.</p>
+    <p style="color:#6B7280;font-size:13px;margin-bottom:32px">You'll be notified once payment is confirmed and order is processed.</p>
+    <div class="conf-box">
+      <div><div class="conf-lbl">Order #</div><div class="conf-val" style="font-size:13px">${esc(o.num)}</div></div>
+      <div><div class="conf-lbl">Items</div><div class="conf-val">${o.items.length} item${o.items.length!==1?'s':''}</div></div>
+      <div><div class="conf-lbl">Amount Paid</div><div class="conf-val">${inr(o.total)}</div></div>
+      <div><div class="conf-lbl">UTR Number</div><div class="conf-val" style="font-family:monospace;font-size:12px">${esc(o.utr||'—')}</div></div>
+      <div><div class="conf-lbl">Status</div><div class="conf-val">⏳ Pending Verify</div></div>
+    </div>
+    <div style="background:#FEF3C7;border:1px solid #FCD34D;border-radius:14px;padding:14px 24px;display:inline-block;margin-bottom:28px;max-width:480px">
+      <strong style="color:#92400E">📌 Save your UTR:</strong> <span style="font-family:monospace;font-weight:700;color:#78350F">${esc(o.utr||'—')}</span>
+      <p style="font-size:12px;color:#92400E;margin-top:4px">Admin will verify this number within 24 hours and ship your order.</p>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary btn-lg" onclick="R.go('orders')">View My Orders</button>
+      <button class="btn btn-outline btn-lg" onclick="R.go('products')">Continue Shopping</button>
+    </div>
+  </div>`;
+}
+
+/* ── MY ORDERS ─────────────────────────────── */
+function pgOrders(){
+  const orders=DB.orders.filter(o=>o.uid!==99).sort((a,b)=>b.id-a.id);
+  if(!orders.length)return`<div class="section"><div class="empty"><div class="empty-icon">📦</div><h2 class="empty-title">No orders yet</h2><p class="empty-desc">Place your first order to see it here.</p><button class="btn btn-primary btn-lg" onclick="R.go('products')">Start Shopping</button></div></div>`;
+  return`<div class="section">
+    <h1 class="sec-title">My Orders</h1>
+    ${orders.map(o=>`<div class="order-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-weight:800;font-size:15px;margin-bottom:3px">${esc(o.num)}</div>
+          <div style="color:#6B7280;font-size:13px;margin-bottom:6px">${fd(o.date)}</div>
+          <div style="font-size:13px;color:#4B5563">${o.items.slice(0,2).map(i=>esc(i.name)).join(', ')}${o.items.length>2?' +more':''}</div>
+          ${o.utr?`<div style="margin-top:8px;font-size:12px;color:#6B7280">UTR: <span class="utr-badge">${esc(o.utr)}</span></div>`:''}
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:900;font-size:19px;color:#2563EB;margin-bottom:6px">${inr(o.total)}</div>
+          <span class="sts ${sc(o.status)}">${sl(o.status)}</span>
+          <div style="font-size:11px;margin-top:4px;font-weight:700;color:${o.utrVerified?'#059669':'#D97706'}">${o.utrVerified?'✅ Payment Verified':o.utr?'⏳ Awaiting Verification':''}</div>
+        </div>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+/* ── ADMIN ─────────────────────────────────── */
+function pgAdmin(){
+  const orders=DB.orders,prods=DB.products;
+  const revenue=orders.filter(o=>o.utrVerified).reduce((s,o)=>s+o.total,0);
+  const pendingUtr=orders.filter(o=>o.utr&&!o.utrVerified&&o.status!=='payment_rejected').length;
+  return`<div class="section">
+    <div style="margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+      <div>
+        <h1 style="font-size:28px;font-weight:900;margin-bottom:4px">📊 Admin Dashboard</h1>
+        <p style="color:#6B7280;font-size:14px">Manage orders, verify UTR payments and edit products</p>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="App.showUpi()">⚙️ UPI Settings</button>
+    </div>
+
+    <div class="stat-grid">
+      ${[[`${orders.length}`,'Total Orders','#2563EB','#EFF6FF'],
+         [pendingUtr?`⚠️ ${pendingUtr}`:'0','UTR Pending','#D97706','#FEF3C7'],
+         [`${orders.filter(o=>o.status==='shipped').length}`,'Shipped','#7C3AED','#EDE9FE'],
+         [`${orders.filter(o=>o.status==='delivered').length}`,'Delivered','#059669','#D1FAE5'],
+         [inr(revenue),'Verified Revenue','#DC2626','#FEF2F2']].map(([v,l,c,bg])=>`
+      <div class="stat-card" style="background:${bg}">
+        <div class="stat-val" style="color:${c}">${v}</div>
+        <div class="stat-lbl">${l}</div>
+      </div>`).join('')}
+    </div>
+
+    <!-- ORDERS & UTR VERIFICATION -->
+    <div class="card" style="margin-bottom:28px">
+      <div style="padding:16px 24px;border-bottom:1px solid #F3F4F6;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <div>
+          <h2 style="font-weight:800;font-size:17px">Orders & UTR Verification</h2>
+          ${pendingUtr?`<span style="background:#FEF3C7;color:#92400E;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700">⚠️ ${pendingUtr} payment${pendingUtr!==1?'s':''} awaiting verification</span>`:''}
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Order #</th><th>Customer</th><th>Date</th><th>Total</th><th>UTR Number</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${orders.sort((a,b)=>b.id-a.id).map(o=>`<tr>
+              <td><strong style="font-size:12px">${esc(o.num)}</strong></td>
+              <td><div style="font-weight:600">${esc(o.name||'—')}</div><div style="font-size:11px;color:#6B7280">${esc(o.phone||'')}</div></td>
+              <td style="font-size:12px;white-space:nowrap">${fd(o.date)}</td>
+              <td><strong style="color:#2563EB">${inr(o.total)}</strong></td>
+              <td>
+                ${o.utr
+                  ?`<div><span class="utr-badge">${esc(o.utr)}</span><div style="font-size:11px;font-weight:700;margin-top:3px;color:${o.utrVerified?'#059669':'#D97706'}">${o.utrVerified?'✅ Verified':'⏳ Pending'}</div></div>`
+                  :`<span style="color:#9CA3AF;font-size:12px;font-style:italic">No UTR yet</span>`}
+              </td>
+              <td><span class="sts ${sc(o.status)}" style="font-size:11px">${sl(o.status)}</span></td>
+              <td>
+                <div style="display:flex;flex-direction:column;gap:6px;min-width:180px">
+                  ${o.utr&&!o.utrVerified&&o.status!=='payment_rejected'?`<div style="display:flex;gap:6px">
+                    <button class="btn-verify" onclick="App.verifyUTR(${o.id})">✅ Verify</button>
+                    <button class="btn-reject" onclick="App.rejectUTR(${o.id})">❌ Reject</button>
+                  </div>`:''}
+                  <select class="inp" style="padding:6px 10px;font-size:12px" onchange="App.updateOrder(${o.id},this.value)">
+                    ${['awaiting_payment','payment_submitted','confirmed','shipped','delivered','cancelled','payment_rejected'].map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${sl(s)}</option>`).join('')}
+                  </select>
+                </div>
+              </td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="card">
+      <div style="padding:16px 24px;border-bottom:1px solid #F3F4F6;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2 style="font-weight:800;font-size:17px">Product Inventory</h2>
+          <p style="font-size:12px;color:#6B7280;margin-top:2px">${prods.length} products total</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="App.openModal(null)">+ Add Product</button>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Badge</th><th>Rating</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${prods.map(p=>`<tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#F3F4F6">${pImg(p.img,p.name,p.cat,'',40)}</div>
+                  <span style="font-weight:600;font-size:13px">${esc(p.name)}</span>
+                </div>
+              </td>
+              <td style="font-size:13px">${catName(p.cat)}</td>
+              <td><strong style="color:#2563EB">${inr(p.price)}</strong></td>
+              <td>${p.badge?`<span class="bdg ${bc(p.badge)}" style="position:static;display:inline-block">${esc(p.badge)}</span>`:'<span style="color:#D1D5DB">—</span>'}</td>
+              <td><span style="color:#F59E0B">★</span> ${p.rating}</td>
+              <td>
+                <div style="display:flex;gap:6px">
+                  <button class="btn-edit" onclick="App.openModal(${p.id})">✏️ Edit</button>
+                  <button class="btn-danger" onclick="App.delProduct(${p.id})">🗑 Delete</button>
+                </div>
+              </td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── MODALS ────────────────────────────────── */
+function showProductModal(pid){
+  const isNew=!pid;
+  const p=isNew?{name:'',price:'',desc:'',cat:1,badge:'',img:'',rating:4.5}:DB.products.find(x=>x.id==pid);
+  if(!p)return;
+  document.getElementById('modal-root').innerHTML=`
+  <div class="modal-ov" id="modal-ov" onclick="if(event.target.id==='modal-ov')closeModal()">
+    <div class="modal-box">
+      <div class="modal-hdr">
+        <div>
+          <div style="color:#fff;font-weight:900;font-size:18px">${isNew?'➕ Add New Product':'✏️ Edit Product'}</div>
+          ${!isNew?`<div style="color:rgba(255,255,255,.7);font-size:12px;margin-top:2px">ID #${p.id}</div>`:''}
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="fg-full"><label class="form-lbl">Product Name *</label><input class="inp" id="m-name" value="${esc(p.name)}" placeholder="e.g. Sony WH-1000XM5 Headphones"></div>
+          <div>
+            <label class="form-lbl">Price (₹ INR) *</label>
+            <div style="position:relative">
+              <span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#6B7280;font-weight:700;pointer-events:none">₹</span>
+              <input class="inp" id="m-price" type="number" min="1" step="1" value="${esc(p.price)}" placeholder="0" style="padding-left:26px">
+            </div>
+          </div>
+          <div><label class="form-lbl">Category *</label><select class="inp" id="m-cat">${CATEGORIES.map(c=>`<option value="${c.id}" ${p.cat==c.id?'selected':''}>${c.name}</option>`).join('')}</select></div>
+          <div><label class="form-lbl">Rating (0–5)</label><input class="inp" id="m-rating" type="number" min="0" max="5" step="0.1" value="${p.rating}"></div>
+          <div><label class="form-lbl">Badge <span style="font-weight:400;color:#9CA3AF">(optional)</span></label>
+            <select class="inp" id="m-badge"><option value="" ${!p.badge?'selected':''}>— None —</option>${['Best Seller','New','Hot','Sale','Limited'].map(b=>`<option value="${b}" ${p.badge===b?'selected':''}>${b}</option>`).join('')}</select>
+          </div>
+          <div class="fg-full"><label class="form-lbl">Description *</label><textarea class="inp" id="m-desc" rows="3" placeholder="Short product description…">${esc(p.desc)}</textarea></div>
+          <div class="fg-full">
+            <label class="form-lbl">Product Image <span style="font-weight:400;color:#9CA3AF">(choose a photo from your gallery)</span></label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="file" accept="image/*" id="m-img-file" style="flex:1" onchange="App.pickImg(event)">
+              <input type="hidden" id="m-img" value="${esc(p.img||'')}">
+            </div>
+            <div class="img-prev" id="img-prev" style="${p.img?'display:block':'display:none'}">
+              <img id="img-prev-tag" src="${esc(p.img||'')}" alt="preview" onerror="this.parentElement.style.display='none'">
+              <button type="button" class="btn btn-outline btn-sm" style="margin-top:8px" onclick="App.clearImg()">Remove image</button>
+            </div>
+          </div>
+        </div>
+        <div id="m-err" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:10px 14px;font-size:13px;color:#DC2626;margin-top:14px">⚠️ Name, price and description are required.</div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="App.saveProduct(${isNew?'null':pid})">${isNew?'➕ Add Product':'💾 Save Changes'}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function showUpiModal(){
+  document.getElementById('modal-root').innerHTML=`
+  <div class="modal-ov" id="modal-ov" onclick="if(event.target.id==='modal-ov')closeModal()">
+    <div class="modal-box modal-box-sm">
+      <div class="modal-hdr" style="background:linear-gradient(135deg,#059669,#0D9488)">
+        <div style="color:#fff;font-weight:900;font-size:17px">⚙️ UPI Payment Settings</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:#6B7280;font-size:14px;margin-bottom:18px">Customers scan your UPI QR code during checkout to pay you directly.</p>
+        <label class="form-lbl">Your UPI ID *</label>
+        <input class="inp" id="upi-inp" value="${esc(DB.upiId)}" placeholder="yourname@upi" style="border-color:#6EE7B7;margin-bottom:6px">
+        <p style="font-size:12px;color:#6B7280;margin-bottom:18px">e.g. name@upi · name@oksbi · name@okaxis · 9876543210@paytm</p>
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:14px;text-align:center">
+          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:10px">QR Preview</div>
+          <img src="${qrUrl(DB.upiId,500)}" style="width:140px;height:140px;border-radius:8px;border:2px solid #E5E7EB;display:block;margin:0 auto 8px" onerror="this.style.display='none'">
+          <div style="font-size:13px;color:#065F46;font-weight:600">${esc(DB.upiId)}</div>
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" style="background:linear-gradient(135deg,#059669,#0D9488)" onclick="App.saveUpi()">💾 Save UPI ID</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── APP CONTROLLER ────────────────────────── */
+const App={
+  /* AUTH */
+  toggleEye(){const i=document.getElementById('l-pass'),b=document.getElementById('eye-btn');if(!i)return;i.type=i.type==='password'?'text':'password';if(b)b.textContent=i.type==='password'?'👁️':'🙈';},
+  doLogin(){
+    const email=(document.getElementById('l-email')?.value||'').trim().toLowerCase();
+    const pass=document.getElementById('l-pass')?.value||'';
+    const btn=document.getElementById('login-btn');
+    if(!email||!pass){this._err('Please enter email and password.');return;}
+    if(btn){btn.disabled=true;btn.textContent='Signing in…';}
+    setTimeout(()=>{
+      const u=USERS.find(x=>x.role==='admin'&&x.email===email&&x.pass===pass);
+      if(!u){if(btn){btn.disabled=false;btn.textContent='🔐 Access Admin Panel';}this._err('Invalid admin credentials.');return;}
+      DB.user=u;toast(`Welcome, ${u.name}! 👋`);
+      const r=R._al;R._al=null;R.go(r||'admin');
+    },600);
+  },
+  _err(msg){const e=document.getElementById('login-err');if(e){e.textContent=msg;e.style.display='block';}},
+  logout(){DB.user=null;DB.cart=[];toast('Logged out.');R.go('home');},
+
+  /* SEARCH */
+  doSearch(val){
+    R.params.search=val;
+    document.getElementById('main').innerHTML=pgProducts();
+    const i=document.getElementById('s-inp');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}
+  },
+  setCat(id){R.params.cat=id;R.params.search='';render();},
+  clearSearch(){R.params.cat=null;R.params.search='';render();},
+
+  /* CART */
+  addToCart(id,goCart=false){
+    const p=DB.products.find(x=>x.id==id);if(!p)return;
+    const cart=DB.cart,ex=cart.find(i=>i.id===p.id);
+    DB.cart=ex?cart.map(i=>i.id===p.id?{...i,qty:i.qty+1}:i):[...cart,{id:p.id,name:p.name,price:p.price,img:p.img,cat:p.cat,qty:1}];
+    toast(`"${p.name}" added to cart!`);drawNav();
+    if(goCart)R.go('cart');
+  },
+  removeItem(id){DB.cart=DB.cart.filter(i=>i.id!==id);render();},
+  setQty(id,qty){if(qty<1){this.removeItem(id);return;}DB.cart=DB.cart.map(i=>i.id===id?{...i,qty}:i);render();},
+
+  /* CHECKOUT FLOW */
+  goToPayment(){
+    const name=document.getElementById('co-name')?.value?.trim();
+    const phone=document.getElementById('co-phone')?.value?.trim();
+    const addr=document.getElementById('co-addr')?.value?.trim();
+    if(!name||!phone||!addr){const e=document.getElementById('co-err');if(e)e.style.display='block';return;}
+    R.go('payment',{name,phone,addr,email:document.getElementById('co-email')?.value?.trim()||''});
+  },
+  onUtr(val){
+    const btn=document.getElementById('submit-btn');
+    if(btn)btn.disabled=val.trim().length<8;
+    const e=document.getElementById('utr-err');if(e)e.style.display='none';
+  },
+  placeOrder(){
+    const utr=document.getElementById('utr-inp')?.value?.trim();
+    if(!utr||utr.length<8){
+      const e=document.getElementById('utr-err');if(e){e.textContent='⚠️ Enter a valid UTR / Reference number (min 8 characters).';e.style.display='block';}return;
+    }
+    const cart=DB.cart;if(!cart.length)return;
+    const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+    const order={
+      id:Date.now(),num:`ORD-${Date.now().toString().slice(-8)}`,uid:0,
+      date:new Date().toISOString().split('T')[0],total,
+      status:'payment_submitted',utr:utr.replace(/\s/g,''),utrVerified:false,
+      name:R.params.name||'Customer',phone:R.params.phone||'',addr:R.params.addr||'',
+      items:cart.map(i=>({name:i.name,qty:i.qty,price:i.price})),
+    };
+    DB.orders=[order,...DB.orders];DB.cart=[];
+    toast('Order placed! Admin will verify your UTR shortly. 🎉');
+    R.go('confirmation',{order});
+  },
+
+  /* ADMIN — UTR */
+  verifyUTR(id){DB.orders=DB.orders.map(o=>o.id===id?{...o,utrVerified:true,status:'confirmed'}:o);toast('✅ UTR verified! Order confirmed.');render();},
+  rejectUTR(id){
+    if(!confirm('Reject this UTR? Order will be marked as Payment Rejected.'))return;
+    DB.orders=DB.orders.map(o=>o.id===id?{...o,utrVerified:false,status:'payment_rejected'}:o);
+    toast('❌ UTR rejected.',true);render();
+  },
+  updateOrder(id,status){DB.orders=DB.orders.map(o=>o.id===id?{...o,status}:o);toast('Status updated!');render();},
+
+  /* ADMIN — UPI */
+  showUpi(){showUpiModal();},
+  saveUpi(){
+    const v=document.getElementById('upi-inp')?.value?.trim();
+    if(!v){toast('Enter a UPI ID.',true);return;}
+    DB.upiId=v;closeModal();toast('UPI ID updated! ✅');
+  },
+
+  /* PRODUCTS CRUD */
+  openModal(pid){showProductModal(pid);},
+  pickImg(e){
+    const file=e.target.files&&e.target.files[0];
+    if(!file){toast('No file was received from the picker.',true);return;}
+    // Some Android gallery/content providers don't set file.type reliably —
+    // only block genuinely non-image files (must have an explicit non-image type).
+    if(file.type&&!file.type.startsWith('image/')){toast('Please choose an image file.',true);return;}
+    const reader=new FileReader();
+    reader.onerror=()=>toast('Could not read that file. Try a different photo.',true);
+    reader.onload=(ev)=>{
+      const rawDataUrl=ev.target.result;
+      const applyImage=(dataUrl)=>{
+        const hidden=document.getElementById('m-img'),prev=document.getElementById('img-prev'),tag=document.getElementById('img-prev-tag');
+        if(hidden)hidden.value=dataUrl;
+        if(tag)tag.src=dataUrl;
+        if(prev)prev.style.display='block';
+        toast('Photo added ✅');
+      };
+      const img=new Image();
+      img.onload=()=>{
+        try{
+          const maxDim=900;
+          let{width:w,height:h}=img;
+          if(w>maxDim||h>maxDim){
+            if(w>h){h=Math.round(h*maxDim/w);w=maxDim;}else{w=Math.round(w*maxDim/h);h=maxDim;}
+          }
+          const canvas=document.createElement('canvas');
+          canvas.width=w;canvas.height=h;
+          canvas.getContext('2d').drawImage(img,0,0,w,h);
+          const compressed=canvas.toDataURL('image/jpeg',0.82);
+          applyImage(compressed);
+        }catch(err){
+          // resizing failed (e.g. unsupported format for canvas) — fall back to the original file untouched
+          applyImage(rawDataUrl);
+        }
+      };
+      img.onerror=()=>{
+        // browser couldn't decode this into an <img> (e.g. HEIC on a browser without support) —
+        // still store the original file so it isn't lost; some browsers will render it anyway
+        applyImage(rawDataUrl);
+      };
+      img.src=rawDataUrl;
+    };
+    reader.readAsDataURL(file);
+  },
+  clearImg(){
+    const hidden=document.getElementById('m-img'),prev=document.getElementById('img-prev'),fileInp=document.getElementById('m-img-file');
+    if(hidden)hidden.value='';
+    if(prev)prev.style.display='none';
+    if(fileInp)fileInp.value='';
+  },
+  saveProduct(pid){
+    const name=document.getElementById('m-name')?.value?.trim();
+    const price=document.getElementById('m-price')?.value;
+    const desc=document.getElementById('m-desc')?.value?.trim();
+    const cat=Number(document.getElementById('m-cat')?.value);
+    const badge=document.getElementById('m-badge')?.value||null;
+    const img=document.getElementById('m-img')?.value?.trim()||'';
+    const rating=parseFloat(document.getElementById('m-rating')?.value)||4.5;
+    if(!name||!price||!desc){const e=document.getElementById('m-err');if(e)e.style.display='block';return;}
+    if(!pid){
+      DB.products=[{id:Date.now(),name,price:Number(price),cat,badge:badge||null,img,desc,rating,reviews:0},...DB.products];
+      toast(`"${name}" added!`);
+    }else{
+      DB.products=DB.products.map(p=>p.id==pid?{...p,name,price:Number(price),cat,badge:badge||null,img,desc,rating}:p);
+      DB.cart=DB.cart.map(i=>i.id==pid?{...i,name,price:Number(price),img}:i);
+      toast(`"${name}" updated!`);
+    }
+    closeModal();render();
+  },
+  delProduct(id){
+    const p=DB.products.find(x=>x.id==id);if(!p)return;
+    if(!confirm(`Delete "${p.name}"?\n\nThis cannot be undone.`))return;
+    DB.products=DB.products.filter(x=>x.id!==id);
+    DB.cart=DB.cart.filter(i=>i.id!==id);
+    toast('Product deleted.');render();
+  },
+};
+
+/* ── RENDER ────────────────────────────────── */
+const PAGES={home:pgHome,login:pgLogin,products:pgProducts,detail:pgDetail,cart:pgCart,checkout:pgCheckout,payment:pgPayment,confirmation:pgConfirm,orders:pgOrders,admin:pgAdmin};
+function render(){
+  drawNav();
+  document.getElementById('footer').style.display=R.page==='login'?'none':'';
+  document.getElementById('main').innerHTML=(PAGES[R.page]||pgHome)();
+}
+render();
+
+/* ══════════════════════════════════════════════════════════
+   AI SHOPPING ASSISTANT — 24/7, fully client-side (no server
+   required, so it's always available even if you host this
+   as a plain static file). Understands products, prices,
+   categories, order tracking and common store FAQs using the
+   site's own live data (DB.products / DB.orders).
+
+   OPTIONAL UPGRADE: to hook this up to a real LLM (OpenAI,
+   Anthropic, etc.) for open-ended conversation, set
+   CHAT_CONFIG.apiUrl + CHAT_CONFIG.apiKey below and see the
+   `askLLM()` stub — it will be tried first, and this local
+   assistant is used as an instant fallback if that call fails
+   or isn't configured, so the bot never goes silent.
+   ══════════════════════════════════════════════════════════ */
+const CHAT_CONFIG={
+  apiUrl:'',   // e.g. 'https://your-backend.example.com/api/chat' — leave blank to use local assistant only
+  apiKey:'',   // never put a secret API key directly in shipped client HTML in production; proxy it through your own backend instead
+};
+
+const CHAT_FAQ=[
+  {k:['shipping','delivery','how long','when will','arrive'],a:'Standard delivery takes 3–5 business days across India. You\'ll get tracking updates by SMS and email as soon as your order ships.'},
+  {k:['return','refund','exchange'],a:'Items can be returned within 7 days of delivery if unused and in original packaging. Refunds go back to your original payment method within 5–7 business days.'},
+  {k:['payment','upi','utr','pay','how do i pay'],a:'We accept UPI payments. After checkout, scan the QR code, pay, then enter your UPI transaction UTR number — our team verifies it, usually within a few hours.'},
+  {k:['contact','support','human','talk to someone','agent'],a:'Reach our human support team at support@shopease.in or +91 98765 00000, Mon–Sat 9am–7pm IST. I\'m here 24/7 in the meantime for quick answers!'},
+  {k:['hour','open','close','are you open'],a:'The store itself never closes — shop anytime, day or night. Human support is available Mon–Sat, 9am–7pm IST.'},
+  {k:['admin','admin panel'],a:'The Admin Panel is for store staff to manage products and verify payments. Ask your site admin for access if you need it.'},
+];
+
+const CHAT_CHIPS=['Track my order','Show me best sellers','Shipping & returns policy','How do I pay?'];
+
+function chatEsc(s){return esc(s);}
+
+function chatGreeting(){
+  const u=DB.user;
+  return u
+    ? `Hi ${chatEsc(u.name.split(' ')[0])}! 👋 I'm your ShopEase AI assistant. Ask me to find a product, compare prices, check an order, or answer a store question.`
+    : `Hi there! 👋 I'm your ShopEase AI assistant, online 24/7. Ask me to find a product, check prices, or track an order.`;
+}
+
+function findProducts(text){
+  const words=text.toLowerCase().split(/[^a-z0-9]+/).filter(w=>w.length>2);
+  if(!words.length)return[];
+  const scored=DB.products.map(p=>{
+    const hay=(p.name+' '+p.desc+' '+catName(p.cat)).toLowerCase();
+    let score=0;
+    words.forEach(w=>{if(hay.includes(w))score++;});
+    return{p,score};
+  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+  return scored.slice(0,3).map(x=>x.p);
+}
+
+function findByBudget(text){
+  const m=text.match(/(?:under|below|less than|within)\s*(?:₹|rs\.?|inr)?\s*([\d,]+)/i);
+  if(!m)return null;
+  const budget=parseInt(m[1].replace(/,/g,''),10);
+  if(!budget)return null;
+  return DB.products.filter(p=>p.price<=budget).sort((a,b)=>a.price-b.price).slice(0,3);
+}
+
+function findOrder(text){
+  const numMatch=text.match(/ORD-\d{8}-\d{3}/i);
+  const orders=DB.orders;
+  if(numMatch){
+    return orders.find(o=>o.num.toLowerCase()===numMatch[0].toLowerCase())||null;
+  }
+  const digits=text.match(/\d{3,}/);
+  if(digits){
+    return orders.find(o=>o.num.includes(digits[0]))||null;
+  }
+  return undefined; // undefined = no specific order number given at all
+}
+
+function productChip(p){
+  const img=p.img?`<img src="${esc(p.img)}" alt="${esc(p.name)}">`:`<div class="ph">${CAT_ICON[p.cat]||'🛍️'}</div>`;
+  return `<div class="cmsg-prod" onclick="R.go('detail',{id:${p.id}});Chat.toggle(false)">${img}<div><div class="nm">${esc(p.name)}</div><div class="pr">${inr(p.price)}</div></div></div>`;
+}
+
+function getBotReply(raw){
+  const text=raw.trim();
+  const low=text.toLowerCase();
+
+  if(/\b(hi|hello|hey|good morning|good evening)\b/.test(low)&&text.length<25){
+    return chatGreeting();
+  }
+
+  if(/order|track|utr|delivery status/.test(low)){
+    const found=findOrder(low);
+    if(found){
+      return `Order <b>${esc(found.num)}</b> — status: <b>${esc(sl(found.status))}</b>.<br>Placed ${esc(fd(found.date))} · Total ${inr(found.total)}${found.utr?`<br>UTR: ${esc(found.utr)} (${found.utrVerified?'✓ verified':'pending verification'})`:''}`;
+    }
+    if(found===null){
+      return `I couldn't find an order matching that number. Double-check it on the <b>My Orders</b> page, or share your order number like <i>ORD-20240401-001</i>.`;
+    }
+    if(DB.user){
+      const mine=DB.orders.filter(o=>o.uid===DB.user.id);
+      if(mine.length){
+        return `Here are your recent orders — tap My Orders for full details:<br>`+mine.map(o=>`• <b>${esc(o.num)}</b>: ${esc(sl(o.status))}`).join('<br>');
+      }
+    }
+    return `Sure — what's your order number (e.g. <i>ORD-20240401-001</i>)? You can also see everything under <b>My Orders</b>.`;
+  }
+
+  const budgetMatches=findByBudget(low);
+  if(budgetMatches&&budgetMatches.length){
+    return `Here's what I found in your budget:`+budgetMatches.map(productChip).join('');
+  }
+
+  if(/best.?seller|popular|top rated|recommend/.test(low)){
+    const top=[...DB.products].sort((a,b)=>b.rating-a.rating).slice(0,3);
+    return `Here are some of our top-rated picks:`+top.map(productChip).join('');
+  }
+
+  const cat=CATEGORIES.find(c=>low.includes(c.name.toLowerCase())||low.includes(c.name.split(' ')[0].toLowerCase()));
+  if(cat){
+    const items=DB.products.filter(p=>p.cat===cat.id).slice(0,3);
+    if(items.length)return `Here's what we have in <b>${esc(cat.name)}</b>:`+items.map(productChip).join('');
+  }
+
+  const prodMatches=findProducts(low);
+  if(prodMatches.length){
+    return `Here's what I found:`+prodMatches.map(productChip).join('');
+  }
+
+  for(const faq of CHAT_FAQ){
+    if(faq.k.some(k=>low.includes(k)))return faq.a;
+  }
+
+  if(/thank|thanks|thx/.test(low))return `You're welcome! Anything else I can help you find? 😊`;
+
+  return `I'm not totally sure about that one — I can help with product search, prices, order tracking, and store policies (shipping, returns, payment). Try asking something like "show me headphones under 30000" or "track my order".`;
+}
+
+async function askLLM(text){
+  if(!CHAT_CONFIG.apiUrl)return null;
+  try{
+    const res=await fetch(CHAT_CONFIG.apiUrl,{
+      method:'POST',
+      headers:{'Content-Type':'application/json',...(CHAT_CONFIG.apiKey?{'Authorization':`Bearer ${CHAT_CONFIG.apiKey}`}:{})},
+      body:JSON.stringify({message:text,history:Chat.messages})
+    });
+    if(!res.ok)return null;
+    const data=await res.json();
+    return data.reply||null;
+  }catch(e){return null;}
+}
+
+const Chat={
+  messages:[],
+  open:false,
+  toggle(force){
+    this.open=force!==undefined?force:!this.open;
+    document.getElementById('chat-panel').classList.toggle('open',this.open);
+    if(this.open&&!this.messages.length)this.init();
+    if(this.open)document.getElementById('chat-inp').focus();
+  },
+  init(){
+    this.addBot(chatGreeting());
+    this.renderChips(CHAT_CHIPS);
+  },
+  onKey(e){
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();this.send();}
+  },
+  chip(text){
+    document.getElementById('chat-inp').value=text;
+    this.send();
+  },
+  renderChips(list){
+    document.getElementById('chat-chips').innerHTML=list.map(c=>`<div class="cchip" onclick="Chat.chip('${c.replace(/'/g,"\\'")}')">${esc(c)}</div>`).join('');
+  },
+  addUser(text){
+    this.messages.push({role:'user',content:text});
+    const el=document.createElement('div');
+    el.className='cmsg cmsg-user';
+    el.textContent=text;
+    document.getElementById('chat-body').appendChild(el);
+    this.scrollDown();
+  },
+  addBot(html){
+    this.messages.push({role:'assistant',content:html});
+    const el=document.createElement('div');
+    el.className='cmsg cmsg-bot';
+    el.innerHTML=html;
+    document.getElementById('chat-body').appendChild(el);
+    this.scrollDown();
+  },
+  showTyping(){
+    const el=document.createElement('div');
+    el.className='ctyping';
+    el.id='chat-typing';
+    el.innerHTML='<span></span><span></span><span></span>';
+    document.getElementById('chat-body').appendChild(el);
+    this.scrollDown();
+  },
+  hideTyping(){
+    const el=document.getElementById('chat-typing');
+    if(el)el.remove();
+  },
+  scrollDown(){
+    const body=document.getElementById('chat-body');
+    requestAnimationFrame(()=>{body.scrollTop=body.scrollHeight;});
+  },
+  async send(){
+    const inp=document.getElementById('chat-inp');
+    const text=inp.value.trim();
+    if(!text)return;
+    inp.value='';
+    document.getElementById('chat-chips').innerHTML='';
+    this.addUser(text);
+    this.showTyping();
+    const llmReply=await askLLM(text);
+    await new Promise(r=>setTimeout(r,350+Math.random()*350)); // natural typing pause
+    this.hideTyping();
+    this.addBot(llmReply||getBotReply(text));
+    this.renderChips(CHAT_CHIPS);
+  }
+};
+</script>
+</body>
+</html>
